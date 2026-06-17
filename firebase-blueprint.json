@@ -1,0 +1,35 @@
+{
+  "entities": {
+    "ChatMessage": {
+      "title": "Chat Message",
+      "description": "An individual message in a conversation.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "sender": { "type": "string", "enum": ["user", "zoya"] },
+        "text": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "sender", "text", "createdAt"]
+    },
+    "UserPreferences": {
+      "title": "User Preferences",
+      "description": "Storing user's preferences for the AI assistant.",
+      "type": "object",
+      "properties": {
+        "userName": { "type": "string" },
+        "theme": { "type": "string" }
+      }
+    }
+  },
+  "firestore": {
+    "/users/{userId}/chatHistory/{messageId}": {
+      "schema": "ChatMessage",
+      "description": "User's chat history."
+    },
+    "/users/{userId}/preferences": {
+      "schema": "UserPreferences",
+      "description": "User preferences."
+    }
+  }
+}
